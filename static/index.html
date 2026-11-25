@@ -1,0 +1,23 @@
+<!doctype html><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kestrel routing check</title>
+<style>body{font:16px system-ui;max-width:680px;margin:2rem auto;padding:0 1rem;color:#1a1a1a}
+label{display:block;margin:.8rem 0 .2rem;font-weight:600}select,textarea,button{font:inherit;padding:.5rem;width:100%;box-sizing:border-box}
+textarea{height:5rem}button{margin-top:1rem;background:#0b5;color:#fff;border:0;border-radius:6px;cursor:pointer}
+.row{display:flex;gap:.6rem}.row>div{flex:1}#out{margin-top:1.2rem;padding:1rem;border-radius:8px;background:#f4f4f4}
+.auto{border-left:6px solid #0b5}.ask{border-left:6px solid #e90}.err{border-left:6px solid #c22}h2{margin:.1rem 0}small{color:#555}</style>
+<h1>Where should this request go?</h1>
+<label>Customer message</label><textarea id=t placeholder="e.g. water purifier not turning on, paid by card"></textarea>
+<div class=row><div><label>Product</label><select id=p><option>Water Purifier<option>Air Fryer<option>Mixer Grinder<option>Induction Cooktop<option>Room Heater<option>Ceiling Fan<option>Robot Vacuum</select></div>
+<div><label>Warranty</label><select id=w><option>in_warranty<option>shield<option>out_of_warranty</select></div>
+<div><label>Channel</label><select id=c><option>chat<option>whatsapp<option>ivr<option>email</select></div></div>
+<button onclick=go()>Route it</button><div id=out hidden></div>
+<script>
+async function go(){const o=document.getElementById('out');o.hidden=false;o.className='';o.textContent='Working…';
+try{const r=await fetch('/route',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({request_text:t.value,product_family:p.value,warranty_status:w.value,channel:c.value})});
+const j=await r.json();
+if(!j.ok){o.className='err';o.innerHTML='<b>Could not route:</b> '+esc(j.error)+(j.fallback?'<br>'+esc(j.fallback):'');return}
+o.className=j.decision=='auto_route'?'auto':'ask';
+o.innerHTML='<h2>'+esc(j.team)+'</h2><small>'+Math.round(j.confidence*100)+'% sure &middot; '+(j.decision=='auto_route'?'safe to auto-route':'needs one clarifying question')+'</small><p>'+esc(j.next_step)+'</p><b>Why</b><ul>'+j.reasons.map(x=>'<li>'+esc(x)+'</li>').join('')+'</ul><small>Next most likely: '+j.alternatives.map(a=>esc(a.team)+' ('+Math.round(a.p*100)+'%)').join(', ')+'</small>'}
+catch(e){o.className='err';o.textContent='Service not reachable. Is `python app.py` running?'}}
+function esc(s){return String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))}
+</script>

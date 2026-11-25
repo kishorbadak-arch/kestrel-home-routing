@@ -1,0 +1,110 @@
+{
+ "n_train": 8687,
+ "n_val": 2135,
+ "bot_vs_outcome_val": 0.7667447306791569,
+ "bot_vs_outcome_all": 0.7716688227684346,
+ "model_vs_outcome_val": 0.8430913348946136,
+ "model_vs_outcome_val_unseen_text": 0.8427607680332122,
+ "share_unseen_text": 0.9025761124121779,
+ "threshold": 0.8,
+ "auto_share": 0.795784543325527,
+ "auto_acc": 0.9711595055915244,
+ "review_share": 0.20421545667447308,
+ "review_acc_if_forced": 0.3440366972477064,
+ "bot_acc_on_auto_rows": 0.8705120659211301,
+ "bot_acc_on_review_rows": 0.3623853211009174,
+ "botclone_match_bot_val": 0.955503512880562,
+ "botclone_vs_outcome_val": 0.765807962529274,
+ "per_team_recall": {
+  "Billing": 0.863,
+  "Filters & Consumables": 0.826,
+  "Installs & Demo": 0.835,
+  "Product Advice": 0.784,
+  "Repairs": 0.914,
+  "Returns & Replacement": 0.825,
+  "Warranty Claims": 0.795
+ },
+ "calibration": {
+  "(0.0, 0.5]": {
+   "mean": 0.23,
+   "size": 330
+  },
+  "(0.5, 0.8]": {
+   "mean": 0.698,
+   "size": 106
+  },
+  "(0.8, 0.95]": {
+   "mean": 0.968,
+   "size": 948
+  },
+  "(0.95, 1.0]": {
+   "mean": 0.975,
+   "size": 751
+  }
+ },
+ "errors_by_true_team": {
+  "Billing": {
+   "Billing": 220,
+   "Filters & Consumables": 1,
+   "Installs & Demo": 4,
+   "Product Advice": 3,
+   "Repairs": 6,
+   "Returns & Replacement": 6,
+   "Warranty Claims": 6
+  },
+  "Filters & Consumables": {
+   "Billing": 4,
+   "Filters & Consumables": 171,
+   "Installs & Demo": 4,
+   "Product Advice": 5,
+   "Repairs": 3,
+   "Returns & Replacement": 2,
+   "Warranty Claims": 4
+  },
+  "Installs & Demo": {
+   "Billing": 5,
+   "Filters & Consumables": 9,
+   "Installs & Demo": 268,
+   "Product Advice": 8,
+   "Repairs": 10,
+   "Returns & Replacement": 7,
+   "Warranty Claims": 11
+  },
+  "Product Advice": {
+   "Billing": 4,
+   "Filters & Consumables": 6,
+   "Installs & Demo": 4,
+   "Product Advice": 211,
+   "Repairs": 3,
+   "Returns & Replacement": 6,
+   "Warranty Claims": 6
+  },
+  "Repairs": {
+   "Billing": 16,
+   "Filters & Consumables": 12,
+   "Installs & Demo": 26,
+   "Product Advice": 29,
+   "Repairs": 455,
+   "Returns & Replacement": 32,
+   "Warranty Claims": 14
+  },
+  "Returns & Replacement": {
+   "Billing": 3,
+   "Filters & Consumables": 3,
+   "Installs & Demo": 10,
+   "Product Advice": 5,
+   "Repairs": 13,
+   "Returns & Replacement": 269,
+   "Warranty Claims": 12
+  },
+  "Warranty Claims": {
+   "Billing": 3,
+   "Filters & Consumables": 5,
+   "Installs & Demo": 5,
+   "Product Advice": 8,
+   "Repairs": 8,
+   "Returns & Replacement": 4,
+   "Warranty Claims": 206
+  }
+ }
+}
